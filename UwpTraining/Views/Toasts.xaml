@@ -1,0 +1,21 @@
+﻿<Page
+    x:Class="UwpTraining.Views.Toasts"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UwpTraining.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel Margin="20">
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,10,0,10">
+            <Button x:Name="ShowToast" Content="Show toast" Click="ShowToast_Click"/>
+        </StackPanel>
+        <StackPanel>
+            <TextBlock x:Name="Status" Text="Unregistered"/>
+            <TextBlock x:Name="Progress" Text=""/>
+            <TextBlock x:Name="Result" Text=""/>
+        </StackPanel>
+    </StackPanel>
+</Page>

@@ -1,0 +1,82 @@
+﻿<Page
+    x:Class="UwpTraining.Views.ContactDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UwpTraining.Views"
+    xmlns:controls="using:UwpTraining.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="1152.262" d:DesignHeight="416.762">
+
+    <Page.Resources>
+        <Style x:Key="textBlockStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="20,20,20,20"/>
+        </Style>
+
+        <Style x:Key="impTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource textBlockStyle}">
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <DataTemplate x:Key="colorDataTemplate" x:DataType="x:String">
+            <controls:ColorDisplay FavColor="{x:Bind }"/>
+        </DataTemplate>
+
+        <ControlTemplate x:Key="ButtonTemplate" TargetType="Button">
+            <Grid>
+                <Rectangle Fill="AliceBlue" Height="100" Width="150"></Rectangle>
+                <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+        </ControlTemplate>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.ColumnSpan="2" Background="{StaticResource headerColor}">
+                    <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="Contact details for" TextWrapping="Wrap" FontSize="22" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Text="{x:Bind ViewModel.Summary, Mode=OneWay}" TextWrapping="Wrap" FontSize="22" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center" Margin="8,0,0,0" TextDecorations="Underline" />
+                    </StackPanel>
+                </Border>
+                <TextBlock Style="{StaticResource textBlockStyle}" Grid.Row="1" Text="Name" />
+                <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="{x:Bind ViewModel.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20,20,20,20" />
+                <TextBlock Style="{StaticResource textBlockStyle}" Grid.Row="2" Text="Surname" />
+                <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Text="{x:Bind ViewModel.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20,20,20,20" />
+                <TextBlock Style="{StaticResource textBlockStyle}" Grid.Row="3" Text="Favourite colors" />
+                <ListView x:Name="colorsListView" Grid.Column="1" Grid.Row="3" Margin="20,20,20,20" ItemsSource="{x:Bind ViewModel.FavouriteColors}" ItemTemplate="{StaticResource colorDataTemplate}" >
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                </ListView>
+                <TextBlock Style="{StaticResource impTextBlockStyle}" Grid.Row="4" Text="Selected color" />
+                <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Text="{Binding SelectedItem, ElementName=colorsListView}" Margin="20,20,20,20" />
+            </Grid>
+        </ScrollViewer>
+        <StackPanel HorizontalAlignment="Right" Grid.Row="1" Orientation="Horizontal">
+            <Button Content="OK" Margin="0,20,0,20" Click="Button_Click"></Button>
+            <Button Content="Cancel" Margin="20,20,20,20" Template="{StaticResource ButtonTemplate}"></Button>
+        </StackPanel>
+    </Grid>
+</Page>
