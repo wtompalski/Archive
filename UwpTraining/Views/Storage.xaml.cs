@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -95,6 +96,25 @@ namespace UwpTraining.Views
 
             // DownloadsFolder
             // KnownFolders.CameraRoll
+        }
+
+        private async Task UpdateUI()
+        {
+            var list = await localFolder.GetFilesAsync();
+            this.listOfFiles.ItemsSource = list.Select(x => x.Name);
+        }
+
+        private async void Import_Click(object sender, RoutedEventArgs e)
+        {
+            var picker = new FileOpenPicker();
+            picker.ViewMode = PickerViewMode.Thumbnail;
+            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            picker.FileTypeFilter.Add(".jpg");
+
+            StorageFile file = await picker.PickSingleFileAsync();
+
+            await file.CopyAsync(localFolder);
+            await UpdateUI();
         }
     }
 }
