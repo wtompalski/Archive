@@ -26,7 +26,7 @@ namespace UwpTraining.Views
             string title = "Alice sends you a cat picture";
             string content = "Look at this cuttie!";
             string image = "http://placekitten.com/200/300";
-            string logo = "ms-appdata:///local/alice.jpg";
+            string logo = "ms-appdata:///local/kitten.jpg";
 
             var visual = new ToastVisual()
             {
