@@ -1,5 +1,4 @@
-﻿using Microsoft.QueryStringDotNET;
-using Microsoft.Toolkit.Uwp.Notifications;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
 using System.Diagnostics;
 using System.IO;
 using System.Xml;
