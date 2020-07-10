@@ -125,6 +125,7 @@
     <Compile Include="Controls\ColorDisplay.xaml.cs">
       <DependentUpon>ColorDisplay.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\UpperCaseConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
